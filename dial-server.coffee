@@ -6,6 +6,7 @@ ArduinoFirmata = require 'arduino-firmata'
 RotaryEncoder = require path.join __dirname, 'libs/RotaryEncoder'
 JogShuttle = require path.join __dirname, 'libs/JogShuttle'
 
+
 ## HTTP Server ##
 
 app_handler = (req, res) ->
@@ -35,11 +36,11 @@ app.listen process.env.PORT
 console.log "server start - port:#{process.env.PORT}"
 
 
-## Arduino RotaryEncoder ##
+## RotaryEncoder & JogShuttle ##
 
 arduino = new ArduinoFirmata()
-rotenc = new RotaryEncoder arduino, 4, 3
-jog = new JogShuttle arduino, 5, 6, 7, 8
+rotenc = new RotaryEncoder arduino, 4, 3  ## digital pin 4,3
+jog = new JogShuttle arduino, 5, 6, 7, 8  ## digital pin 5,6,7,8
 
 arduino.on 'connect', ->
   console.log "Arduino board version: #{arduino.boardVersion}"
