@@ -10,7 +10,7 @@ JogShuttle = require path.join __dirname, 'libs/JogShuttle'
 
 app_handler = (req, res) ->
   _url = url.parse(decodeURI(req.url), true);
-  path = if _url.pathname == '/' then '/index.html' else _url.pathname
+  path = if _url.pathname is '/' then '/index.html' else _url.pathname
   console.log "#{req.method} - #{path}"
   fs.readFile __dirname+path, (err, data) ->
     if err
