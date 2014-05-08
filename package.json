@@ -1,0 +1,19 @@
+{
+  "name": "dial-linda",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dial-server.coffee",
+  "scripts": {
+    "start": "./node_modules/coffee-script/bin/coffee dial-server.coffee"
+  },
+  "author": "Sho Hashimoto <hashimoto@shokai.org>",
+  "license": "MIT",
+  "dependencies": {
+    "arduino-firmata": "^0.3.0",
+    "coffee-script": "^1.7.1",
+    "eventemitter2": "^0.4.13",
+    "linda-socket.io": "^0.2.0",
+    "socket.io": "^0.9.16",
+    "socket.io-client": "^0.9.16"
+  }
+}
