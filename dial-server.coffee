@@ -4,6 +4,7 @@ url  = require 'url'
 path = require 'path'
 ArduinoFirmata = require 'arduino-firmata'
 RotaryEncoder = require path.join __dirname, 'libs/RotaryEncoder'
+JogShuttle = require path.join __dirname, 'libs/JogShuttle'
 
 ## HTTP Server ##
 
@@ -37,7 +38,8 @@ console.log "server start - port:#{process.env.PORT}"
 ## Arduino RotaryEncoder ##
 
 arduino = new ArduinoFirmata()
-rotenc = new RotaryEncoder arduino, 6, 7
+rotenc = new RotaryEncoder arduino, 4, 3
+jog = new JogShuttle arduino, 5, 6, 7, 8
 
 arduino.on 'connect', ->
   console.log "Arduino board version: #{arduino.boardVersion}"
@@ -45,9 +47,17 @@ arduino.on 'connect', ->
 rotenc.on 'rotate', (direction) ->
   data =
     type: 'dial'
+    name: 'RotaryEncoder'
     direction: direction
   console.log data
   ts.write data
 
-arduino.connect process.env.ARDUINO
+jog.on 'jog', (state) ->
+  data =
+    type: 'dial'
+    name: 'JogShuttle'
+    state: state
+  console.log data
+  ts.write data
 
+arduino.connect process.env.ARDUINO
