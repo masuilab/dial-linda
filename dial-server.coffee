@@ -40,7 +40,7 @@ console.log "server start - port:#{process.env.PORT}"
 
 arduino = new ArduinoFirmata()
 rotenc = new RotaryEncoder arduino, 4, 3  ## digital pin 4,3
-jog = new JogShuttle arduino, 5, 6, 7, 8  ## digital pin 5,6,7,8
+jogshuttle = new JogShuttle arduino, 5, 6, 7, 8  ## digital pin 5,6,7,8
 
 arduino.on 'connect', ->
   console.log "Arduino board version: #{arduino.boardVersion}"
@@ -53,7 +53,7 @@ rotenc.on 'rotate', (direction) ->
   console.log data
   ts.write data
 
-jog.on 'jog', (state) ->
+jogshuttle.on 'shuttle', (state) ->
   data =
     type: 'dial'
     name: 'JogShuttle'

@@ -15,7 +15,7 @@ module.exports = class JogShuffle extends events.EventEmitter2
       @pastState = @state
       @state = @getState()
       if @state isnt @pastState
-        @emit 'jog', @state
+        @emit 'shuttle', @state
 
   initPins: ->
     @arduino.pinMode @pinA, ArduinoFirmata.INPUT
